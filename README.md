@@ -1,2 +1,2 @@
 # es-mapping-creator
-cli tool to create a elasticsearch mapping template
+go cli tool to create a elasticsearch mapping template
