@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"fmt"
 )
 
 type Mappings struct {
@@ -20,5 +20,6 @@ func main() {
 		},
 	}
 	mappingFile, _ := json.MarshalIndent(jsonData, "", "    ")
-	_ = ioutil.WriteFile("mappings.json", mappingFile, 0644)
+	fmt.Printf("%+v\n", string(mappingFile))
+	//_ = ioutil.WriteFile("mappings.json", mappingFile, 0644)
 }
