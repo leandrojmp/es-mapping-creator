@@ -15,10 +15,6 @@ type Properties struct {
 	Properties interface{} `json:"properties"`
 }
 
-type Type struct {
-	Type string `json:"type"`
-}
-
 func ReadFile(mappingFile string) []string {
 	content, err := os.ReadFile(mappingFile)
 	if err != nil {
@@ -28,18 +24,23 @@ func ReadFile(mappingFile string) []string {
 	return lines
 }
 
+func CreateMapping(lines []string) interface{} {
+	mappingFields := make(map[string]interface{})
+	for _, line := range lines {
+		typeField := make(map[string]interface{})
+		typeField["type"] = strings.Split(line, ": ")[1]
+		mappingFields[strings.Split(line, ": ")[0]] = typeField
+	}
+	return mappingFields
+}
+
 func main() {
+	CreateMapping(ReadFile("mapping.txt"))
 	jsonData := Mappings{
 		Mappings: Properties{
-			Properties: Type{
-				Type: "ip",
-			},
+			CreateMapping(ReadFile("mapping.txt")),
 		},
 	}
 	mappingFile, _ := json.MarshalIndent(jsonData, "", "    ")
 	fmt.Printf("%+v\n", string(mappingFile))
-	for _, line := range ReadFile("mapping.txt") {
-		fmt.Print(line + string('\n'))
-	}
-	//_ = ioutil.WriteFile("mappings.json", mappingFile, 0644)
 }

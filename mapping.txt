@@ -1,1 +1,4 @@
+name: keyword
+full_name: text
 address: ip
+location: geo_point
