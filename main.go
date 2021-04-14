@@ -15,16 +15,14 @@ type Properties struct {
 	Properties interface{} `json:"properties"`
 }
 
-func ReadFile(mappingFile string) []string {
+func CreateMapping(mappingFile string) interface{} {
+	/* read file and create list with the content */
 	content, err := os.ReadFile(mappingFile)
 	if err != nil {
 		fmt.Println("error:", err)
 	}
 	lines := strings.Split(string(content), "\n")
-	return lines
-}
-
-func CreateMapping(lines []string) interface{} {
+	/* for each line add item as a key in a dict with the type  */
 	mappingFields := make(map[string]interface{})
 	for _, line := range lines {
 		typeField := make(map[string]interface{})
@@ -35,10 +33,9 @@ func CreateMapping(lines []string) interface{} {
 }
 
 func main() {
-	CreateMapping(ReadFile("mapping.txt"))
 	jsonData := Mappings{
 		Mappings: Properties{
-			CreateMapping(ReadFile("mapping.txt")),
+			CreateMapping("mapping.txt"),
 		},
 	}
 	mappingFile, _ := json.MarshalIndent(jsonData, "", "    ")
