@@ -20,6 +20,7 @@ currently only top-level fields and nested fields with one level are supported.
 ## TO DO
 
 - [ ] pass source and destination files from command line  
+- [ ] check source file format integrity  
 - [ ] multi-level nested fields  
 - [ ] fields multi-fields mappings  
 - [ ] option to add ecs fields  
