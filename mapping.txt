@@ -1,9 +1,4 @@
-user.name: keyword
-user.ip: ip
-user.full_name: text
-user.location: geo_point
-user.address: keyword
-host.os: keyword
-source: keyword
-host.mac: keyword
-user.age: integer
+fieldA: keyword
+fieldB: text
+fieldC.nestedFieldA: keyword
+fieldC.nestedFieldB: geo_point
