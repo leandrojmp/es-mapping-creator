@@ -1,7 +1,7 @@
 ---
 name: new-feat
 about: template for new feature
-title: ''
+title: 'feat:'
 labels: enhancement
 assignees: leandrojmp
 
