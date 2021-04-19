@@ -1,4 +1,9 @@
-name: keyword
-full_name: text
-address: ip
-location: geo_point
+user.name: keyword
+user.ip: ip
+user.full_name: text
+user.location: geo_point
+user.address: keyword
+host.os: keyword
+source: keyword
+host.mac: keyword
+user.age: integer
