@@ -8,3 +8,4 @@
 *.sum
 *.json
 fields.txt
+es-mapping-creator
