@@ -32,12 +32,14 @@ func CreateMapping(mappingFile string) interface{} {
 	var nestedList []string
 	// check for nested, works only for two level in the format first.second: type
 	for _, line := range lines {
-		fieldName := strings.Split(line, ": ")[0]
-		fieldType := strings.Split(line, ": ")[1]
-		if strings.Contains(fieldName, ".") {
-			nestedList = append(nestedList, strings.Replace(line, ": ", "-", 1))
-		} else {
-			mappingFields[fieldName] = Type{fieldType}
+		if strings.Contains(line, ":") {
+			fieldName := strings.TrimSpace(strings.Split(line, ":")[0])
+			fieldType := strings.TrimSpace(strings.Split(line, ":")[1])
+			if strings.Contains(fieldName, ".") {
+				nestedList = append(nestedList, strings.Replace(line, ":", "-", 1))
+			} else {
+				mappingFields[fieldName] = Type{fieldType}
+			}
 		}
 	}
 	// loop nested fields list
