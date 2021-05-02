@@ -50,7 +50,7 @@ func CreateMapping(mappingFile string) interface{} {
 			nestedFields[fieldTop] = make(map[string]interface{})
 		}
 		fieldName := strings.Split(strings.Split(field, "-")[0], ".")[1]
-		fieldType := strings.Split(field, "-")[1]
+		fieldType := strings.TrimSpace(strings.Split(field, "-")[1])
 		nestedFields[fieldTop][fieldName] = Type{fieldType}
 	}
 	// create mapping for top level nested fields
