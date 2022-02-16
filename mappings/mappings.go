@@ -6,6 +6,10 @@ import (
 	"strings"
 )
 
+type Template struct {
+	Template interface{} `json:"template"`
+}
+
 type Mappings struct {
 	Mappings Properties `json:"mappings"`
 }

@@ -14,7 +14,7 @@ func main() {
 
 	flag.Parse()
 
-	jsonData := m.Mappings{Mappings: m.Properties{Properties: m.CreateMapping(*inputFilePtr)}}
+	jsonData := m.Template{Template: m.Mappings{Mappings: m.Properties{Properties: m.CreateMapping(*inputFilePtr)}}}
 	mappingFile, _ := json.MarshalIndent(jsonData, "", "    ")
 	_ = os.WriteFile(*outputFilePtr, mappingFile, 0644)
 	// fmt.Printf("%+v\n", string(mappingFile))
