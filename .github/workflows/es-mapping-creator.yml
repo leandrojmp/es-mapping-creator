@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    
+    - run: mkdir -p ~/artifact/linux
+    - run: mkdir -p ~/artifact/windows
+      
 
     - name: 'set up go'
       uses: actions/setup-go@v2
@@ -16,19 +20,19 @@ jobs:
         go-version: 1.17
         
     - name: 'linux build'
-      run: GOOS=linux GOARCH=amd64 go build -v -ldflags="-s -w"
+      run: GOOS=linux GOARCH=amd64 go build -v -ldflags="-s -w" -o ~/artifact/linux/es-mapping-creator
     
     - name: 'upload linux binary'
       uses: actions/upload-artifact@v2
       with:
         name: es-mapping-creator
-        path: es-mapping-creator
+        path: ~/artifact/linux
         
     - name: 'windows build'
-      run: GOOS=windows GOARCH=amd64 go build -v -ldflags="-s -w"
+      run: GOOS=windows GOARCH=amd64 go build -v -ldflags="-s -w" -o ~/artifact/windows/es-mapping-creator.exe
     
     - name: 'upload windows binary'
       uses: actions/upload-artifact@v2
       with:
         name: es-mapping-creator.exe
-        path: es-mapping-creator
+        path: ~/artifact/windows
