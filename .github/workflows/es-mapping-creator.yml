@@ -16,7 +16,7 @@ jobs:
         go-version: 1.17
         
     - name: 'linux build'
-      run: GOOS=linux GOARCH=amd64 go build -v -ldflags="-s -w"
+      run: env GOOS=linux GOARCH=amd64 go build -v -ldflags="-s -w"
     
     - name: 'upload linux binary'
       uses: actions/upload-artifact@v2
@@ -25,10 +25,10 @@ jobs:
         path: es-mapping-creator
         
     - name: 'windows build'
-      run: GOOS=windows GOARCH=amd64 go build -v -ldflags="-s -w"
+      run: env GOOS=windows GOARCH=amd64 go build -v -ldflags="-s -w"
     
     - name: 'upload windows binary'
       uses: actions/upload-artifact@v2
       with:
-        name: es-mapping-creator-windows-x86_84.exe
+        name: es-mapping-creator-windows-x86_84
         path: es-mapping-creator
